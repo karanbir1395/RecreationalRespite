@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="23a2d8b281d6439591b4a5f1f963821b" Name="Diagram1" ZoomLevel="73" >
+        <EntityTypeShape EntityType="DemoModel.User" Width="1.5" PointX="1.375" PointY="0.875" />
+        <EntityTypeShape EntityType="DemoModel.user_information" Width="1.5" PointX="4.5" PointY="2.125" />
+        <AssociationConnector Association="DemoModel.user_informationUser" />
+        <EntityTypeShape EntityType="DemoModel.Diagnosis" Width="1.5" PointX="0.625" PointY="3.75" />
+        <EntityTypeShape EntityType="DemoModel.Events" Width="1.5" PointX="2.5" PointY="4.25" />
+        <EntityTypeShape EntityType="DemoModel.Participant" Width="1.5" PointX="7.375" PointY="4.125" />
+        <AssociationConnector Association="DemoModel.Participantuser_information" />
+        <EntityTypeShape EntityType="DemoModel.FeedBack" Width="1.5" PointX="6.25" PointY="1.75" />
+        <AssociationConnector Association="DemoModel.FeedBackUser" />
+        <EntityTypeShape EntityType="DemoModel.Articles" Width="1.5" PointX="13.75" PointY="3" />
+        <EntityTypeShape EntityType="DemoModel.Registration" Width="1.5" PointX="10.25" PointY="2.625" />
+        <AssociationConnector Association="DemoModel.RegistrationParticipant" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

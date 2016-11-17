@@ -13,7 +13,7 @@
 @end
 
 @implementation AppDelegate
-
+@synthesize passUsernametoNextScreen,passSelectedArticleFromLibrary,passEventDate,passEventName,passEventSeats,passEventAddress,passEventEndTime,passEventStartTime,passEventDescription,passEventImage,passEventName_Regis,passUserEmail_Regis,passUserPhone_Regis,passEventLocation_Regis,passParticipantAge_Regis,passParticipantName_Regis, usernameLoggedIn, passEventId;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

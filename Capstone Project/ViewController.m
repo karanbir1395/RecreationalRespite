@@ -14,10 +14,25 @@
 
 @implementation ViewController
 
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+-(IBAction)onClickLogin:(id)sender
+{
+    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    mainDelegate.usernameLoggedIn = @"mannkara";
+    
+    HomePageViewController *homePageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"homePageViewController"];
+    
+    [self presentViewController:homePageViewController animated:YES completion:nil];
+
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

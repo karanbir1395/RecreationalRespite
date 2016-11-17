@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        tools:context=".Categories"
+        android:background="#ebe8e8">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:background="#ebe8e8"
+            android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="20dp"
+            android:id="@+id/relativeLayout">
+
+
+            <HorizontalScrollView android:id="@+id/horizontalScroll"
+                android:layout_width="fill_parent"
+                android:layout_height="160dp"
+                android:scrollbars="none"
+                android:fadingEdgeLength="10dp">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/linearLayoutImages"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="16dp"
+                    android:background="#ebe8e8"
+                    android:paddingLeft="-10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:weightSum="1">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:onClick="category"
+                            android:id="@+id/image1"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="blog1"
+                            android:id="@+id/image1Text"
+                            android:layout_below="@+id/image1"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="7dp"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:onClick="category"
+
+                            android:id="@+id/image2"
+                            android:contentDescription="Chiropractor"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="blog2"
+                            android:id="@+id/image2Text"
+                            android:layout_below="@+id/image2"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="7dp"/>
+                        />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:onClick="category"
+                            android:id="@+id/image3"
+
+
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="blog3"
+                            android:id="@+id/image3Text"
+                            android:layout_below="@+id/image3"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="7dp"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:onClick="category"
+
+                            android:id="@+id/image4"
+
+
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="blog4"
+                            android:layout_below="@+id/image4"
+                            android:id="@+id/image4Text"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="7dp"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:id="@+id/image5"
+                            android:onClick="category"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="blog5"
+                            android:layout_below="@+id/image5"
+                            android:id="@+id/image5Text"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="7dp"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        >
+                        <ImageView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:onClick="category"
+                            android:id="@+id/image6"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="blog6"
+                            android:id="@+id/image6Text"
+                            android:layout_below="@+id/image6"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="7dp"/>
+                    </RelativeLayout>
+
+
+
+
+
+
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+</RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upcoming Events"
+                android:textSize="20dp"
+                android:id="@+id/upcomingText"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/relativeLayout"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+<ListView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/eventsList"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="10dp"
+    android:layout_below="@+id/upcomingText"></ListView>
+            </RelativeLayout>
+    </ScrollView>
+    <ListView
+        android:id="@+id/navList"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|start"
+        android:background="#ffeeeeee"/>
+    </android.support.v4.widget.DrawerLayout>

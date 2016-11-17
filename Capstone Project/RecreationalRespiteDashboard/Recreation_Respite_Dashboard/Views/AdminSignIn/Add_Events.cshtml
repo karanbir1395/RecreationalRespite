@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewBag.Title = "Add_Events";
+}
+
+<h2>Add_Events</h2>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>
+</head>
+
+<body>
+    <a id="myBtn" class="btn btn-lg btn-success btn-block">Add Event</a>
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">×</span>
+            <div class="panel-body">
+                <form role="form">
+                    <div class="modal-header">
+                        <i class="fa fa-file-text fa-5x"></i>
+                        <h4 class="modal-title">Events</h4>
+                        <small class="font-bold">Enter event:</small>
+
+                        <div class="modal-body">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-form-label">Name:</label>
+                                    <div class="col-xs-9">
+                                        <input id="name" placeholder="Name" type="text"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-form-label">Location:</label>
+                                     
+                                        <input id="location" placeholder="Location" type="text" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-form-label">Date</label>
+                                    <div class="col-xs-9">
+                                        <small>24 Hour Time Format HH:MM:SS(08:00:00)</small>
+                                        <input id="date"  type="datetime" />
+                                    </div>
+                                </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-form-label">Number of Particpants:</label>
+                                    <div class="col-xs-9">
+                                        <input id="num_participant" placeholder="Number of participants" type="number" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-form-label">Event Description:</label>
+                                    <div class="col-xs-9">
+                                        <input id="event_description" placeholder="Description" type="text" />
+                                    </div>
+                                </div>
+                          
+                          
+                                <div class="form-group row">
+                                    <label class="col-xs-3 col-form-label">Image:</label>
+                                    <div class="col-xs-9">
+                                        <input id="image" type="image" />
+                                    </div>
+                                </div>    
+                   </div>
+                    </form>
+            </div>
+
+        </div>
+     
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+    </script>
+</body>
+
+</html>
+ 

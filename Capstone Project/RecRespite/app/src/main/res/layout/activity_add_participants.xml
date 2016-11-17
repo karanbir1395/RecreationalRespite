@@ -1,0 +1,173 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+
+    android:background="#ffffff">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/relativeLayout5"
+            android:background="#1ab4ff"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClickBack">
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/back"
+                    android:onClick="back"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Participant"
+                android:textSize="20sp"
+                android:id="@+id/textView3"
+
+                android:layout_marginTop="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/etFirstName"
+            android:layout_below="@+id/relativeLayout5"
+            android:hint="First Name"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/etLastName"
+            android:layout_below="@+id/etFirstName"
+            android:hint="Last Name"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/etAge"
+            android:inputType="number"
+            android:layout_below="@+id/etLastName"
+            android:hint="Age"/>
+        <Spinner
+            android:layout_width="220dp"
+            android:layout_height="35dp"
+            android:id="@+id/spinnerGender"
+            android:layout_marginTop="10dp"
+            android:entries="@array/spinner_item"
+            android:layout_below="@+id/etAge"
+            android:layout_gravity="center_horizontal"
+            android:drawSelectorOnTop="true"
+            android:spinnerMode="dropdown"
+            android:background="#1ab4ff"
+            android:textAlignment="center"
+            android:theme="@android:style/Theme.DeviceDefault"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="220dp"
+            android:layout_height="35dp"
+            android:id="@+id/diagnosisSpinner"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/spinnerGender"
+            android:layout_gravity="center_horizontal"
+            android:drawSelectorOnTop="true"
+            android:spinnerMode="dropdown"
+            android:background="#1ab4ff"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:theme="@android:style/Theme.DeviceDefault"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"  />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/etProgramInterest"
+            android:inputType="number"
+            android:hint="Program of Interest"
+            android:layout_below="@+id/diagnosisSpinner" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/scroll"
+            android:layout_below="@id/etProgramInterest"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/etNotes"
+                android:inputType="number"
+                android:layout_below="@+id/etProgramInterest"
+                android:hint="Notes"/>
+        </ScrollView>
+        <RelativeLayout
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:id="@+id/addPart"
+            android:background="#1ab4ff"
+            android:layout_below="@+id/scroll"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_add"
+                android:id="@+id/imageView2" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add more"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imageView2"
+                android:layout_toEndOf="@+id/imageView2"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+        </RelativeLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Sign In"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:onClick="home"
+            android:background="#1ab4ff"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/addPart"/>
+
+
+    </RelativeLayout>
+</ScrollView>

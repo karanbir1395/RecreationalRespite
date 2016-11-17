@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RecRespite</string>
+    <string-array name="spinner_item">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+
+    </string-array>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation">Navigation</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="selected_item">Selected item</string>
+</resources>

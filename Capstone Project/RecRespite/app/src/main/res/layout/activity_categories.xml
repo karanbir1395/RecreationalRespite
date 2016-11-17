@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+
+    android:background="#ffffff">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectCat"
+        android:text="Select the Category that best describes you: "
+        android:textAlignment="center"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Parent"
+        android:background="#1ab4ff"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/parent"
+        android:onClick="parent"
+        android:textSize="18dp"
+        android:layout_below="@+id/selectCat"
+        android:layout_marginTop="60dp"/>
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Adult Child of Ailing Parent"
+        android:background="#1ab4ff"
+        android:layout_marginRight="10dp"
+        android:onClick="signUp"
+        android:id="@+id/ailing"
+        android:textStyle="bold"
+        android:textSize="18dp"
+
+        android:layout_alignTop="@+id/parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Individual"
+        android:layout_marginLeft="10dp"
+        android:background="#1ab4ff"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/individual"
+        android:layout_below="@+id/parent"
+       />
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Care Giver"
+        android:layout_marginRight="10dp"
+        android:background="#1ab4ff"
+        android:id="@+id/careGiver"
+        android:textStyle="bold"
+        android:textSize="18dp"
+
+        android:layout_alignTop="@+id/individual"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Case Worker"
+        android:background="#1ab4ff"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:textSize="18dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/caseWorker"
+        android:layout_below="@+id/individual"
+        />
+    <Button
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:text="Other"
+        android:background="#1ab4ff"
+        android:id="@+id/other"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
+    </ScrollView>

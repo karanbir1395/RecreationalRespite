@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DemoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DemoModelStoreContainer">
+    <EntitySet Name="Users" EntityType="DemoModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="user_information" EntityType="DemoModel.Store.user_information" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Diagnosis" EntityType="DemoModel.Store.Diagnosis" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Events" EntityType="DemoModel.Store.Events" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Participants" EntityType="DemoModel.Store.Participants" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FeedBacks" EntityType="DemoModel.Store.FeedBacks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Articles" EntityType="DemoModel.Store.Articles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Registrations" EntityType="DemoModel.Store.Registrations" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="user_informationUser" Association="DemoModel.Store.user_informationUser">
+      <End Role="user_information" EntitySet="user_information" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="Participantuser_information" Association="DemoModel.Store.Participantuser_information">
+      <End Role="Participant" EntitySet="Participants" />
+      <End Role="user_information" EntitySet="user_information" />
+    </AssociationSet>
+    <AssociationSet Name="FeedBackUser" Association="DemoModel.Store.FeedBackUser">
+      <End Role="FeedBack" EntitySet="FeedBacks" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="RegistrationParticipant" Association="DemoModel.Store.RegistrationParticipant">
+      <End Role="Registration" EntitySet="Registrations" />
+      <End Role="Participant" EntitySet="Participants" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user_information">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="First_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Last_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="city" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="region" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Diagnosis">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="end_date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="number_participant" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="image" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Participants">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="gender" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="diagnosis" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="program_interest" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="notes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="user_informationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FeedBacks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Articles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="image" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Registrations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="age" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="contact" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="program_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="program_type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="recreational_interest" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="special_needs" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="exception_goals" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="allergies" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ParticipantId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="user_informationUser">
+    <End Role="user_information" Type="DemoModel.Store.user_information" Multiplicity="*" />
+    <End Role="User" Type="DemoModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="user_information">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Participantuser_information">
+    <End Role="Participant" Type="DemoModel.Store.Participants" Multiplicity="*" />
+    <End Role="user_information" Type="DemoModel.Store.user_information" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="user_information">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Participant">
+        <PropertyRef Name="user_informationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FeedBackUser">
+    <End Role="FeedBack" Type="DemoModel.Store.FeedBacks" Multiplicity="*" />
+    <End Role="User" Type="DemoModel.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeedBack">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RegistrationParticipant">
+    <End Role="Registration" Type="DemoModel.Store.Registrations" Multiplicity="*" />
+    <End Role="Participant" Type="DemoModel.Store.Participants" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Participant">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="ParticipantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DemoModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DemoModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="DemoModel.User" />
+          <EntitySet Name="user_information" EntityType="DemoModel.user_information" />
+          <AssociationSet Name="user_informationUser" Association="DemoModel.user_informationUser">
+            <End Role="user_information" EntitySet="user_information" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Diagnosis" EntityType="DemoModel.Diagnosis" />
+          <EntitySet Name="Events" EntityType="DemoModel.Events" />
+          <EntitySet Name="Participants" EntityType="DemoModel.Participant" />
+          <AssociationSet Name="Participantuser_information" Association="DemoModel.Participantuser_information">
+            <End Role="Participant" EntitySet="Participants" />
+            <End Role="user_information" EntitySet="user_information" />
+          </AssociationSet>
+          <EntitySet Name="FeedBacks" EntityType="DemoModel.FeedBack" />
+          <AssociationSet Name="FeedBackUser" Association="DemoModel.FeedBackUser">
+            <End Role="FeedBack" EntitySet="FeedBacks" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Articles" EntityType="DemoModel.Articles" />
+          <EntitySet Name="Registrations" EntityType="DemoModel.Registration" />
+          <AssociationSet Name="RegistrationParticipant" Association="DemoModel.RegistrationParticipant">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="Participant" EntitySet="Participants" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" Nullable="false" />
+          <NavigationProperty Name="user_information" Relationship="DemoModel.user_informationUser" FromRole="User" ToRole="user_information" />
+          <NavigationProperty Name="FeedBacks" Relationship="DemoModel.FeedBackUser" FromRole="User" ToRole="FeedBack" />
+        </EntityType>
+        <EntityType Name="user_information">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" Nullable="false" />
+          <Property Name="Last_Name" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="phone" Type="String" Nullable="false" />
+          <Property Name="city" Type="String" Nullable="false" />
+          <Property Name="region" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="DemoModel.user_informationUser" FromRole="user_information" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Participants" Relationship="DemoModel.Participantuser_information" FromRole="user_information" ToRole="Participant" />
+        </EntityType>
+        <Association Name="user_informationUser">
+          <End Type="DemoModel.user_information" Role="user_information" Multiplicity="*" />
+          <End Type="DemoModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="user_information">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Diagnosis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="location" Type="String" Nullable="false" />
+          <Property Name="date" Type="String" Nullable="false" />
+          <Property Name="end_date" Type="String" Nullable="false" />
+          <Property Name="number_participant" Type="String" Nullable="false" />
+          <Property Name="image" Type="String" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" Nullable="false" />
+          <Property Name="last_name" Type="String" Nullable="false" />
+          <Property Name="gender" Type="String" Nullable="false" />
+          <Property Name="diagnosis" Type="String" Nullable="false" />
+          <Property Name="program_interest" Type="String" Nullable="false" />
+          <Property Name="notes" Type="String" Nullable="false" />
+          <NavigationProperty Name="user_information" Relationship="DemoModel.Participantuser_information" FromRole="Participant" ToRole="user_information" />
+          <Property Name="user_informationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Registrations" Relationship="DemoModel.RegistrationParticipant" FromRole="Participant" ToRole="Registration" />
+        </EntityType>
+        <Association Name="Participantuser_information">
+          <End Type="DemoModel.Participant" Role="Participant" Multiplicity="*" />
+          <End Type="DemoModel.user_information" Role="user_information" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="user_information">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Participant">
+              <PropertyRef Name="user_informationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FeedBack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="DemoModel.FeedBackUser" FromRole="FeedBack" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FeedBackUser">
+          <End Type="DemoModel.FeedBack" Role="FeedBack" Multiplicity="*" />
+          <End Type="DemoModel.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeedBack">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Articles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="image" Type="String" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" Nullable="false" />
+          <Property Name="last_name" Type="String" Nullable="false" />
+          <Property Name="age" Type="String" Nullable="false" />
+          <Property Name="contact" Type="String" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <Property Name="phone" Type="String" Nullable="false" />
+          <Property Name="program_name" Type="String" Nullable="false" />
+          <Property Name="location" Type="String" Nullable="false" />
+          <Property Name="program_type" Type="String" Nullable="false" />
+          <Property Name="recreational_interest" Type="String" Nullable="false" />
+          <Property Name="special_needs" Type="String" Nullable="false" />
+          <Property Name="exception_goals" Type="String" Nullable="false" />
+          <Property Name="allergies" Type="String" Nullable="false" />
+          <NavigationProperty Name="Participant" Relationship="DemoModel.RegistrationParticipant" FromRole="Registration" ToRole="Participant" />
+          <Property Name="ParticipantId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="RegistrationParticipant">
+          <End Type="DemoModel.Registration" Role="Registration" Multiplicity="*" />
+          <End Type="DemoModel.Participant" Role="Participant" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Participant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="ParticipantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DemoModelStoreContainer" CdmEntityContainer="DemoModelContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_information">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoModel.user_information)">
+        <MappingFragment StoreEntitySet="user_information">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="region" ColumnName="region" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Diagnosis">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoModel.Diagnosis)">
+        <MappingFragment StoreEntitySet="Diagnosis">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoModel.Events)">
+        <MappingFragment StoreEntitySet="Events">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="number_participant" ColumnName="number_participant" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Participants">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoModel.Participant)">
+        <MappingFragment StoreEntitySet="Participants">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="diagnosis" ColumnName="diagnosis" />
+          <ScalarProperty Name="program_interest" ColumnName="program_interest" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="user_informationId" ColumnName="user_informationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeedBacks">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoModel.FeedBack)">
+        <MappingFragment StoreEntitySet="FeedBacks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Articles">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoModel.Articles)">
+        <MappingFragment StoreEntitySet="Articles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registrations">
+      <EntityTypeMapping TypeName="IsTypeOf(DemoModel.Registration)">
+        <MappingFragment StoreEntitySet="Registrations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="program_name" ColumnName="program_name" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="program_type" ColumnName="program_type" />
+          <ScalarProperty Name="recreational_interest" ColumnName="recreational_interest" />
+          <ScalarProperty Name="special_needs" ColumnName="special_needs" />
+          <ScalarProperty Name="exception_goals" ColumnName="exception_goals" />
+          <ScalarProperty Name="allergies" ColumnName="allergies" />
+          <ScalarProperty Name="ParticipantId" ColumnName="ParticipantId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

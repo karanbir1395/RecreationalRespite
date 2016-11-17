@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b780760ba35b41d6b0b238ad2d9c5736" Name="Diagram1" >
+        <EntityTypeShape EntityType="RecModel.User" Width="1.5" PointX="2.625" PointY="0.5" />
+        <EntityTypeShape EntityType="RecModel.user_information" Width="1.5" PointX="4.75" PointY="1.5" />
+        <EntityTypeShape EntityType="RecModel.Participant" Width="1.5" PointX="6.75" PointY="1" />
+        <EntityTypeShape EntityType="RecModel.Diagnosis" Width="1.5" PointX="2.375" PointY="2.375" />
+        <EntityTypeShape EntityType="RecModel.Events" Width="1.5" PointX="0.625" PointY="1" />
+        <EntityTypeShape EntityType="RecModel.Feedback" Width="1.5" PointX="8.75" PointY="1.375" />
+        <EntityTypeShape EntityType="RecModel.Articles" Width="1.5" PointX="12.875" PointY="1.875" />
+        <EntityTypeShape EntityType="RecModel.Registration" Width="1.5" PointX="11.125" PointY="2.25" />
+        <AssociationConnector Association="RecModel.Useruser_information" />
+        <AssociationConnector Association="RecModel.user_informationParticipant" />
+        <AssociationConnector Association="RecModel.FeedbackUser" />
+        <AssociationConnector Association="RecModel.RegistrationParticipant" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
