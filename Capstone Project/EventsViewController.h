@@ -11,24 +11,33 @@
 
 @interface EventsViewController : UIViewController
 {
-    IBOutlet UILabel *lblName;
-    IBOutlet UILabel *lblDescription;
-    IBOutlet UILabel *lblDate;
-    IBOutlet UILabel *lblStartTime;
-    IBOutlet UILabel *lblEndTime;
-    IBOutlet UILabel *lblAddress;
-    IBOutlet UILabel *lblSeatsLeft;
+    IBOutlet UITextField *tfName;
+    IBOutlet UITextView *tvDescription;
+    IBOutlet UITextField *tfDate;
+    IBOutlet UITextField *tfStartTime;
+    IBOutlet UITextField *tfEndTime;
+    IBOutlet UITextField *tfAddress;
+    IBOutlet UITextField *tfSeatsLeft;
+    IBOutlet UITextField *tfCost;
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UITextField *tfDescription;
     
     IBOutlet UIImageView *imgView;
-
+    
+    AppDelegate *mainDelegate;
+    
 }
 
-@property(strong, nonatomic) IBOutlet UILabel *lblName;
-@property(strong, nonatomic) IBOutlet UILabel *lblDescription;
-@property(strong, nonatomic) IBOutlet UILabel *lblDate;
-@property(strong, nonatomic) IBOutlet UILabel *lblStartTime;
-@property(strong, nonatomic) IBOutlet UILabel *lblEndTime;
-@property(strong, nonatomic) IBOutlet UILabel *lblAddress;
-@property(strong, nonatomic) IBOutlet UILabel *lblSeatsLeft;
+@property (assign) CGPoint rememberContentOffset;
+
+@property(strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property(strong, nonatomic) IBOutlet UITextField *tfName;
+@property(strong, nonatomic) IBOutlet UITextView *tvDescription;
+@property(strong, nonatomic) IBOutlet UITextField *tfDate;
+@property(strong, nonatomic) IBOutlet UITextField *tfStartTime;
+@property(strong, nonatomic) IBOutlet UITextField *tfEndTime;
+@property(strong, nonatomic) IBOutlet UITextField *tfAddress;
+@property(strong, nonatomic) IBOutlet UITextField *tfSeatsLeft;
+@property(strong, nonatomic) IBOutlet UITextField *tfCost;
 
 @end

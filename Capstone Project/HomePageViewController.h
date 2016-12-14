@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "EventsViewController.h"
 #import "PDFLibraryViewController.h"
+#import "ViewController.h"
 
 @interface HomePageViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
@@ -27,14 +28,17 @@
     NSMutableArray *arrayEventEndTime;
     NSMutableArray *arrayEventSeats;
     NSMutableArray *arrayEventId;
+    NSMutableArray *arrayEventCost;
 
-
+    IBOutlet UIActivityIndicatorView *activityIndicator;
+    
     IBOutlet UIBarButtonItem *btnLibrary;
     IBOutlet UITableView *tableView;
 }
 
 @property(nonatomic, strong) UIScrollView *ScrollViewHorizontal;
 @property(nonatomic, strong) UIBarButtonItem *btnLibrary;
+@property(nonatomic, strong ) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic,strong) UITableView *tableView;
 
 @end

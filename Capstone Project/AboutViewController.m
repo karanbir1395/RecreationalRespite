@@ -33,7 +33,18 @@
     
 }
 
+-(void) webViewDidStartLoad:(UIWebView *)webView
+{
+    
+    [activityIndicator startAnimating];
+    
+}
 
+-(void) webViewDidFinishLoad:(UIWebView *)webView
+{
+    [activityIndicator stopAnimating];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

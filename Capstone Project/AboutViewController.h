@@ -12,6 +12,8 @@
 {
     IBOutlet UIWebView *aboutWebView;
     NSString *recrespiteLink;
+    IBOutlet UIActivityIndicatorView *activityIndicator;
+
 }
 
 @property(strong, nonatomic) IBOutlet UIWebView *aboutWebView;

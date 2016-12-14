@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EventsViewController.h"
 #import "SiteCell.h"
+#import "RegionViewController.h"
 
 @interface AllEventsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {
@@ -22,6 +23,8 @@
     NSMutableArray *arrayEventStartTime;
     NSMutableArray *arrayEventEndTime;
     NSMutableArray *arrayEventSeats;
+    NSMutableArray *arrayEventCost;
+    AppDelegate *mainDelegate;
 }
 
 @property(strong, nonatomic) IBOutlet UITableView *tableView;

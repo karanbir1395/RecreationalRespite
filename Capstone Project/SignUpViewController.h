@@ -21,10 +21,12 @@
     IBOutlet UITextField *tfEmail;
     IBOutlet UITextField *tfRegion;
     IBOutlet UIPickerView *pickerRegion;
-    
+    AppDelegate *mainDelegate;
     IBOutlet UILabel *lblAsterisk;
     IBOutlet UILabel *lblUsernameError;
-    
+    IBOutlet UILabel *lblInvalidEmail;
+    IBOutlet UIScrollView *scrollView;
+
     NSArray *arrayRegion;
 }
 
@@ -39,6 +41,8 @@
 @property(nonatomic, strong) IBOutlet NSArray *arrayRegion;
 @property (nonatomic, strong) IBOutlet UILabel *lblAsterisk;
 @property(nonatomic, strong) IBOutlet UILabel *lblUsernameError;
+@property(nonatomic, strong) IBOutlet  UIScrollView *scrollView;
+@property (assign) CGPoint rememberContentOffset;
 
 
 @end

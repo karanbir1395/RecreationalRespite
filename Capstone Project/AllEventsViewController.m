@@ -18,15 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+     mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
     [self getEventsFromFirebase];
 }
 
-
+//Making GET request to Firebase to get Event information
 -(void)getEventsFromFirebase
 {
     NSString *fullRequestUrl = [NSString stringWithFormat:@"https://recrespite-3c13b.firebaseio.com/events/events.json"];
     
+    NSString *expectedRegion = mainDelegate.passSelectedRegion;
     
     NSURL *url = [NSURL URLWithString:fullRequestUrl];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -43,12 +45,9 @@
          {
              
              NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             // NSLog(@"response is %@", responseString);
              
              NSArray *jsonArray = [[NSMutableArray alloc] init];
              jsonArray = [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error:nil];
-             
-             // NSLog(@"Array object at 1 %@", jsonImagesArray[1]);
              
              arrayEventName = [[NSMutableArray alloc]init];
              arrayEventPhotos = [[NSMutableArray alloc]init];
@@ -58,6 +57,7 @@
              arrayEventStartTime = [[NSMutableArray alloc]init];
              arrayEventEndTime = [[NSMutableArray alloc]init];
              arrayEventDescription = [[NSMutableArray alloc]init];
+             arrayEventCost = [[NSMutableArray alloc]init];
              
              for (int i=0; i<[jsonArray count]; i++) {
                  
@@ -71,17 +71,54 @@
                  NSString *date = [dict valueForKey:@"date"];
                  NSString *seats = [dict valueForKey:@"totalSeats"];
                  NSString *description = [dict valueForKey:@"eventDescription"];
+                 NSString *eventCost = [dict valueForKey:@"cost"];
+                 NSString *actualRegion = [dict valueForKey:@"region"];
                  
-                 [arrayEventPhotos addObject:image];
-                 [arrayEventName addObject:name];
-                 [arrayEventAddress addObject:address];
-                 [arrayEventDescription addObject:description];
-                 [arrayEventEndTime addObject:endTime];
-                 [arrayEventStartTime addObject:startTime];
-                 [arrayEventDate addObject:date];
-                 [arrayEventSeats addObject:seats];
-                 
+                 if([actualRegion isEqualToString:expectedRegion])
+                 {
+                     [arrayEventPhotos addObject:image];
+                     [arrayEventName addObject:name];
+                     [arrayEventAddress addObject:address];
+                     [arrayEventDescription addObject:description];
+                     [arrayEventEndTime addObject:endTime];
+                     [arrayEventStartTime addObject:startTime];
+                     [arrayEventDate addObject:date];
+                     [arrayEventSeats addObject:seats];
+                     [arrayEventCost addObject:eventCost];
+                     
+                 }
              }
+             
+            
+                 if(arrayEventName.count == 0)
+                 {
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         UIAlertController * alert=   [UIAlertController
+                                                       alertControllerWithTitle:@"Empty!"
+                                                       message:@"This Region has no Events"
+                                                       preferredStyle:UIAlertControllerStyleAlert];
+                         
+                         UIAlertAction* ok = [UIAlertAction
+                                              actionWithTitle:@"Ok"
+                                              style:UIAlertActionStyleDefault
+                                              handler:^(UIAlertAction * action)
+                                              {
+                                                  
+                                                  RegionViewController *regionsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"regionsViewController"];
+                                                  
+                                                  [self presentViewController:regionsViewController animated:YES completion:nil];
+                                              }];
+                         
+                         
+                         
+                         
+                         [alert addAction:ok];
+                         
+                         [self presentViewController:alert animated:YES completion:nil];
+                     });
+                     
+                     
+                 }
              
              [self.tableView reloadData];
              
@@ -124,7 +161,7 @@
         if ( data == nil )
             return;
         dispatch_async(dispatch_get_main_queue(), ^{
-            // WARNING: is the cell still using the same data by this point??
+
             cell.myImageView.image = [UIImage imageWithData: data];
         });
     });
@@ -132,8 +169,15 @@
     
     cell.primaryLabel.text =arrayEventName[row];
     cell.secondaryLabel.text = arrayEventAddress[row];
-    
+    cell.backgroundColor = [UIColor colorWithRed:109.0f/255.0f
+                                           green:109.0f/255.0f
+                                            blue:109.0f/255.0f
+                                           alpha:1.0f
+                            ];
+    cell.primaryLabel.textColor = [UIColor whiteColor];
+    cell.secondaryLabel.textColor = [UIColor colorWithRed:0.51 green:0.58 blue:0.34 alpha:1.0];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.secondaryLabel.font = [UIFont boldSystemFontOfSize:13];
     
     return cell;
     
@@ -141,8 +185,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    //NSLog(@"Checking PDF LINK %@",[arrayArticlePDF objectAtIndex:indexPath.row] );
     mainDelegate.passEventName = [arrayEventName objectAtIndex:indexPath.row];
     mainDelegate.passEventDescription = [arrayEventDescription objectAtIndex:indexPath.row];
     mainDelegate.passEventStartTime = [arrayEventStartTime objectAtIndex:indexPath.row];
@@ -151,15 +193,12 @@
     mainDelegate.passEventDate = [arrayEventDate objectAtIndex:indexPath.row];
     mainDelegate.passEventSeats = [arrayEventSeats objectAtIndex:indexPath.row];
     mainDelegate.passEventImage = [arrayEventPhotos objectAtIndex:indexPath.row];
-    
+    mainDelegate.passEventCost = [arrayEventCost objectAtIndex:indexPath.row];
     
     EventsViewController *eventsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsViewController"];
     
     [self presentViewController:eventsViewController animated:YES completion:nil];
 }
-
-
-
 
 
 

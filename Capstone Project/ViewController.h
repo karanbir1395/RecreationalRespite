@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-#import "HomePageViewController.h"
+#import "HomeViewController.h"
+#import <Security/Security.h>
 
 @interface ViewController : UIViewController
+{
+    IBOutlet UITextField *txtUsername;
+    
+    AppDelegate *mainDelegate;
+}
 
 
 @end

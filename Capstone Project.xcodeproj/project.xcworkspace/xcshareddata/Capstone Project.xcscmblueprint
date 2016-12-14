@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DF190D02E8C9A7DFF17B6A807E78E9DE4D8F02D1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DF190D02E8C9A7DFF17B6A807E78E9DE4D8F02D1" : 9223372036854775807,
+    "F4B067272F5A1E0D01184463BAE17005E024A8BC" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "50B791BA-B98F-4576-A871-2735799EEDA6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DF190D02E8C9A7DFF17B6A807E78E9DE4D8F02D1" : "Capstone%20Project\/",
+    "F4B067272F5A1E0D01184463BAE17005E024A8BC" : "Capstone%20Project\/Capstone%20Project\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Capstone Project",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Capstone Project.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/karanbir1395\/Recrespite",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DF190D02E8C9A7DFF17B6A807E78E9DE4D8F02D1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/karanbir1395\/Recrespite",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F4B067272F5A1E0D01184463BAE17005E024A8BC"
+    }
+  ]
+}

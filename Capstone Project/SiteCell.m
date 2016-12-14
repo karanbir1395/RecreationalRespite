@@ -9,7 +9,7 @@
 #import "SiteCell.h"
 
 @implementation SiteCell
-@synthesize primaryLabel, secondaryLabel, myImageView;
+@synthesize primaryLabel, secondaryLabel, myImageView,addressFrame;
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -21,24 +21,30 @@
          if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
              primaryLabel.font = [UIFont systemFontOfSize:36];
         else
-            primaryLabel.font = [UIFont systemFontOfSize:18];
+            primaryLabel.font = [UIFont systemFontOfSize:16];
         primaryLabel.backgroundColor = [UIColor clearColor];
-        primaryLabel.textColor = [UIColor blackColor];
+        primaryLabel.textColor = [UIColor blueColor];
         
         secondaryLabel = [[UILabel alloc] init];
         secondaryLabel.textAlignment = NSTextAlignmentLeft;
         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
             secondaryLabel.font = [UIFont systemFontOfSize:24];
         else
-            secondaryLabel.font = [UIFont systemFontOfSize:12];
+            secondaryLabel.font = [UIFont systemFontOfSize:13];
         secondaryLabel.backgroundColor = [UIColor clearColor];
-        secondaryLabel.textColor = [UIColor blueColor];
+       // secondaryLabel.textColor = [UIColor blueColor];
+        
+        addressFrame =[[UILabel alloc] init];
+        addressFrame.font = [UIFont systemFontOfSize:10];
+        addressFrame.textAlignment = NSTextAlignmentLeft;
         
         myImageView = [[UIImageView alloc] init];
         
         [self.contentView addSubview:myImageView];
         [self.contentView addSubview:primaryLabel];
         [self.contentView addSubview:secondaryLabel];
+        [self.contentView addSubview:addressFrame];
+
     }
     return self;
 }
@@ -65,11 +71,16 @@
         frame = CGRectMake(5, 5, 65, 45);
         myImageView.frame = frame;
         
-        frame = CGRectMake(110, 5, 260, 20);
+        frame = CGRectMake(110, 3, 260, 20);
         primaryLabel.frame = frame;
         
-        frame = CGRectMake(110, 30, 260, 20);
+        frame = CGRectMake(110, 21, 260, 20);
         secondaryLabel.frame = frame;
+        
+        frame = CGRectMake(110, 40, 260, 20);
+        addressFrame.frame = frame;
+        
+        
     }
     
 }

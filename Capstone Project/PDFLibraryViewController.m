@@ -22,6 +22,19 @@
     [self openPDF];
 }
 
+
+-(void) webViewDidStartLoad:(UIWebView *)webView
+{
+    [activityIndicator startAnimating];
+    
+}
+
+-(void) webViewDidFinishLoad:(UIWebView *)webView
+{
+    [activityIndicator stopAnimating];
+    
+}
+
 -(void) openPDF
 {
     AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -29,8 +42,7 @@
     pdfLink =  mainDelegate.passSelectedArticleFromLibrary;
     NSLog(@"PDF link is %@", pdfLink);
     NSURL *targetURL = [NSURL URLWithString:pdfLink];
-    
-
+ 
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
     [pdfWebView loadRequest:request];
     

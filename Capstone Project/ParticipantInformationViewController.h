@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SignUpViewController.h"
-#import "HomePageViewController.h"
+#import "HomeViewController.h"
+#import "AppDelegate.h"
 
 @interface ParticipantInformationViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource,  UITableViewDelegate>
 {
@@ -19,7 +20,6 @@
     IBOutlet UITextField *tfAge;
     IBOutlet UITextField *tfDiagnosis;
     IBOutlet UITextField *tfProgram;
-    IBOutlet UITableView *tableView;
     IBOutlet UITextField *tfGender;
     IBOutlet UILabel *lblParticipants;
     IBOutlet UIPickerView *pickerGender;
@@ -27,11 +27,12 @@
     IBOutlet UITextView *tvNotes;
     NSMutableArray *names;
     NSArray *arrayGender;
+    AppDelegate *mainDelegate;
+    int count;
 }
 @property(nonatomic, strong) IBOutlet UIPickerView *pvGender;
 @property(nonatomic, strong) NSArray *gender;
 @property(strong, nonatomic) NSMutableArray *names;
-@property(strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) IBOutlet UITextField *tfFirstName;
 @property(strong, nonatomic) IBOutlet UITextField *tfLastName;
 @property(strong, nonatomic) IBOutlet UITextField *tfAge;

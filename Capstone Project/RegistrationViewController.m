@@ -38,6 +38,7 @@
     
 }
 
+//Auto populating all the text fields on page load
 -(void) populateTextboxes
 {
     AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -48,6 +49,10 @@
     txtPhone.text = mainDelegate.passUserPhone_Regis;
     txtLocation.text = mainDelegate.passEventAddress;
     lblEventName.text = mainDelegate.passEventName;
+    NSLog(@"user email is: %@", mainDelegate.passUserEmail_Regis);
+    NSLog(@"user phone is: %@", mainDelegate.passUserPhone_Regis);
+    NSLog(@"participant name is: %@",mainDelegate.passParticipantName_Regis);
+
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
@@ -57,6 +62,7 @@
 }
 
 
+//When register button is clicked
 -(IBAction)onClickRegister:(id)sender
 {
     AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -66,7 +72,6 @@
     NSString *username = mainDelegate.usernameLoggedIn;
     
     NSString *urlString = [NSString stringWithFormat:@"https://recrespite-3c13b.firebaseio.com/events/events/%@/registration/%@.json",eventId,participantName];
-    
     
     
     
@@ -111,15 +116,43 @@
         
         if(![requestReply containsString:@"error"])
         {
-            //DISPATCH_ASYNC IS USED BECAUSE WE SHOULD ALWAYS UPDATE UI FROM MAIN THREAD
             dispatch_async(dispatch_get_main_queue(), ^{
-                
-                HomePageViewController *homePageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"homePageViewController"];
-                
-                [self presentViewController:homePageViewController animated:YES completion:nil];
-                
-            });
+            UIAlertController * alert=   [UIAlertController
+                                          alertControllerWithTitle:@"Registered!"
+                                          message:@"Do you want to register another participant?"
+                                          preferredStyle:UIAlertControllerStyleAlert];
             
+            UIAlertAction* ok = [UIAlertAction
+                                 actionWithTitle:@"Yes"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action)
+                                 {
+                                     [alert dismissViewControllerAnimated:YES completion:nil];
+                                     
+                                     ResigtrationAllParticipantsViewController *allParticipantsForRegistration = [self.storyboard instantiateViewControllerWithIdentifier:@"allParticipantsForRegistration"];
+                                     
+                                         [self presentViewController:allParticipantsForRegistration animated:YES completion:nil];
+                                     
+                                     
+                                 }];
+            
+            UIAlertAction* cancel = [UIAlertAction
+                                     actionWithTitle:@"No"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [alert dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                         HomePageViewController *homePageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"homePageViewController"];
+                                         
+                                             [self presentViewController:homePageViewController animated:YES completion:nil];
+                                     }];
+            
+            [alert addAction:ok];
+            [alert addAction:cancel];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+            });
         }
         else
         {
@@ -134,7 +167,7 @@
 
 //SCROLL VIEW METHODS
 - (void) viewDidAppear:(BOOL)animated {
-    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width *1, self.view.frame.size.height *1.45)];
+    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width *1, self.view.frame.size.height *1.17)];
    
 
 }
@@ -204,18 +237,9 @@
     
     visibleRect.size.height -= keyboardSize.height;
     
-   /* if (!CGRectContainsPoint(visibleRect, buttonOrigin)){
-        
-        CGPoint scrollPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight);
-        
-        [self.scrollView setContentOffset:scrollPoint animated:YES];
-        
-    }*/
+  
     if( [txtRecreationalInterest isFirstResponder] || [txtExpectationsAndGoals isFirstResponder] || [txtAllergies isFirstResponder] || [txtSpecialNeeds isFirstResponder])
     {
-       // CGRect f = self.view.frame;
-        //f.origin.y = -keyboardSize.height;
-        //self.scrollView.frame = f;
         
        [UIView animateWithDuration:0.0010 animations:^{
         self.scrollView.contentOffset = CGPointMake(0,txtRecreationalInterest.frame.origin.y);
@@ -225,9 +249,7 @@
     
     if( [txtLocation isFirstResponder] || [txtEmergencyPhone isFirstResponder] || [txtProgramOfInterest isFirstResponder] || [txtPaymentType isFirstResponder])
     {
-        // CGRect f = self.view.frame;
-        //f.origin.y = -keyboardSize.height;
-        //self.scrollView.frame = f;
+        
         
         [UIView animateWithDuration:0.0010 animations:^{
             self.scrollView.contentOffset = CGPointMake(0,txtLocation.frame.origin.y);
@@ -239,8 +261,7 @@
 
 - (void)keyboardWillBeHidden:(NSNotification *)notification {
     
-   // [scrollView setContentSize:CGSizeMake(self.view.frame.size.width *1, self.view.frame.size.height*1.45)];
-    self.scrollView.contentOffset = CGPointMake(0, 0);
+       self.scrollView.contentOffset = CGPointMake(0, 0);
     [scrollView setContentSize:CGSizeMake(self.view.frame.size.width *1, self.view.frame.size.height*1.45)];
     [self.scrollView setContentOffset:CGPointZero animated:YES];
     

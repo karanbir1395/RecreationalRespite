@@ -19,12 +19,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    maindelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     [self getParticipantsFromFirebase];
 }
 
+//Get Participant Information from database- firebase
+//GET request made to participants node
 -(void)getParticipantsFromFirebase
 {
-    NSString *fullRequestUrl = [NSString stringWithFormat:@"https://recrespite-3c13b.firebaseio.com/UserInformation/mannkara/participants.json"];
+    
+    NSString *username = maindelegate.usernameLoggedIn;
+    
+    NSString *fullRequestUrl = [NSString stringWithFormat:@"https://recrespite-3c13b.firebaseio.com/UserInformation/%@/participants.json", username];
     
     
     NSURL *url = [NSURL URLWithString:fullRequestUrl];
@@ -42,16 +49,13 @@
          {
              
              NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             // NSLog(@"response is %@", responseString);
-           
+             NSLog(@"response is %@", responseString);
              
              
-             
-
              NSArray *jsonArray = [[NSMutableArray alloc] init];
              jsonArray = [NSJSONSerialization JSONObjectWithData: data options:NSJSONReadingMutableContainers error:nil];
              
-             // NSLog(@"Array object at 1 %@", jsonImagesArray[1]);
+             NSLog(@"Array object ", jsonArray);
              
              arrayParticipants = [[NSMutableArray alloc]init];
              arrayParticipantAge = [[NSMutableArray alloc]init];
@@ -63,23 +67,9 @@
                  NSString *firstname=[dict valueForKey:@"firstname"];
                  NSString *age=[dict valueForKey:@"age"];
                  
-                 /* NSString *address = [dict valueForKey:@"location"];
-                  NSString *startTime = [dict valueForKey:@"startTime"];
-                  NSString *endTime = [dict valueForKey:@"endTime"];
-                  NSString *date = [dict valueForKey:@"date"];
-                  NSString *seats = [dict valueForKey:@"totalSeats"];
-                  NSString *description = [dict valueForKey:@"eventDescription"];
-                  */
                  [arrayParticipantAge addObject:age];
                  [arrayParticipants addObject:firstname];
-                 /*       [arrayEventName addObject:name];
-                  [arrayEventAddress addObject:address];
-                  [arrayEventDescription addObject:description];
-                  [arrayEventEndTime addObject:endTime];
-                  [arrayEventStartTime addObject:startTime];
-                  [arrayEventDate addObject:date];
-                  [arrayEventSeats addObject:seats];
-                  */
+                 
              }
              
              [self.tableView reloadData];
@@ -114,101 +104,47 @@
     }
     
     cell.textLabel.text = [arrayParticipants objectAtIndex:indexPath.row];
-    cell.textLabel.textColor = [UIColor blueColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor colorWithRed:109.0f/255.0f
+                                           green:109.0f/255.0f
+                                            blue:109.0f/255.0f
+                                           alpha:1.0f
+                            ];
     return cell;
     
-  
+    
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSLog(@"Checking PDF LINK %@",[arrayArticlePDF objectAtIndex:indexPath.row] );
-   
-    [self getParticipantInfoFromFirebase];
-
-    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    mainDelegate.passParticipantAge_Regis =[arrayParticipantAge objectAtIndex:indexPath.row];
-    mainDelegate.passParticipantName_Regis =[arrayParticipants objectAtIndex:indexPath.row];
-
-    NSString *age =[arrayParticipantAge objectAtIndex:indexPath.row];
-    NSLog(@"age is %@", age);
+    
+    maindelegate.passParticipantAge_Regis =[arrayParticipantAge objectAtIndex:indexPath.row];
+    maindelegate.passParticipantName_Regis =[arrayParticipants objectAtIndex:indexPath.row];
+    
     
     RegistrationViewController *pdfLibraryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"registrationForm"];
     
-    [self presentViewController:pdfLibraryViewController animated:YES completion:nil];
-}
-
-
-
--(void)getParticipantInfoFromFirebase
-{
-    NSString *fullRequestUrl = [NSString stringWithFormat:@"https://recrespite-3c13b.firebaseio.com/UserInformation/mannkara.json"];
-    
-    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    
-    NSURL *url = [NSURL URLWithString:fullRequestUrl];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"GET"];
-    
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response,
-                                               NSData *data, NSError *connectionError)
-     
-     {
-         if (data.length > 0 && connectionError == nil)
-             
-         {
-             
-             NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             // NSLog(@"response is %@", responseString);
-           NSString *str =  [NSString stringWithFormat:@"[%@]",
-              responseString];
-           //  NSLog(@"json string %@", str);
-             NSData* data2 = [str dataUsingEncoding:NSUTF8StringEncoding];
-
-             
-             NSArray *jsonArray = [[NSMutableArray alloc] init];
-             jsonArray = [NSJSONSerialization JSONObjectWithData: data2 options:NSJSONReadingMutableContainers error:nil];
-             
-              NSLog(@"Array object %@", jsonArray);
-             
-          
-             
-             for (int i=0; i<[jsonArray count]; i++) {
-                 
-                 NSDictionary *dict=[jsonArray objectAtIndex:i];
-                 
-                 mainDelegate.passUserPhone_Regis = [dict valueForKey:@"phoneNumber"];
-                 
-                 mainDelegate.passUserEmail_Regis = [dict valueForKey:@"email"];
-              
-                 
-             }
-             
-         }
-         
-     }];
+    [self presentViewController:pdfLibraryViewController animated:YES completion: nil];
     
 }
 
- 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

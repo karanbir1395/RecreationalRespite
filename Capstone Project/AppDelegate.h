@@ -32,6 +32,8 @@
     NSString *passEventId;
     
     NSString *usernameLoggedIn;
+    
+    NSString *passSelectedCategory;
 
 }
 
@@ -46,6 +48,7 @@
 @property(strong, nonatomic) NSString *passEventSeats;
 @property(strong, nonatomic) NSString *passEventDescription;
 @property(strong, nonatomic) NSString *passEventImage;
+@property(strong, nonatomic) NSString *passEventCost;
 
 @property(strong, nonatomic) NSString *passParticipantName_Regis;
 @property(strong, nonatomic) NSString *passUserEmail_Regis;
@@ -55,7 +58,21 @@
 @property(strong, nonatomic) NSString *passEventName_Regis;
 @property(strong, nonatomic) NSString *passEventId;
 
+@property(strong, nonatomic) NSString *passEditParticipantFirstname;
+@property(strong, nonatomic) NSString *passEditParticipantLastname;
+@property(strong, nonatomic) NSString *passEditParticipantAge;
+@property(strong, nonatomic) NSString *passEditParticipantGender;
+@property(strong, nonatomic) NSString *passEditParticipantDiagnosis;
+@property(strong, nonatomic) NSString *passEditParticipantProgramOfInterest;
+@property(strong, nonatomic) NSString *passEditParticipantNotes;
+@property(strong, nonatomic) NSString *passEditParticipantNodeId;
 @property(strong, nonatomic) NSString *usernameLoggedIn;
+@property(strong, nonatomic) NSString *passSelectedCategory;
+
+@property(strong, nonatomic) NSString *passUserLoggedInPhone;
+@property(strong, nonatomic) NSString *passUserLoggedInEmail;
+@property(strong, nonatomic) NSString *passSelectedRegion;
+@property(strong, nonatomic) NSString *passOneToOneLink;
 
 @property (strong, nonatomic) UIWindow *window;
 

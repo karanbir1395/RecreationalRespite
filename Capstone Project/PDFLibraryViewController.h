@@ -14,6 +14,8 @@
     IBOutlet UIWebView *pdfWebView;
     NSMutableArray *arrayPdfLinks;
     NSString *pdfLink;
+    IBOutlet UIActivityIndicatorView *activityIndicator;
+
 }
 
 @property(strong, nonatomic) IBOutlet UIWebView *pdfWebView;

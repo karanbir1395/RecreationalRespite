@@ -14,17 +14,29 @@
 @end
 
 @implementation HomePageViewController
-@synthesize ScrollViewHorizontal,btnLibrary, tableView;
+@synthesize ScrollViewHorizontal,btnLibrary, tableView,activityIndicator;
 
 
--(IBAction)unwindToThisViewController:(UIStoryboardSegue *)sender
+
+
+
+-(IBAction)onClickLogout:(id)sender
 {
+    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"username"];
+    //  [[NSUserDefaults standardUserDefaults] setValue:_password forKey:@"password"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    ViewController *loginViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+    
+    [self presentViewController:loginViewController animated:YES completion:nil];
+    
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     
     [ScrollViewHorizontal setScrollEnabled:YES];
 
@@ -35,12 +47,13 @@
     
     [self getArticlesFromFirebase];
     [self getEventsFromFirebase];
-    
-
+   
 }
 
 -(void)getArticlesFromFirebase
 {
+    [activityIndicator startAnimating];
+
     NSString *fullRequestUrl = [NSString stringWithFormat:@"https://recrespite-3c13b.firebaseio.com/articles/articles/.json"];
     
     
@@ -133,6 +146,7 @@
              arrayEventEndTime = [[NSMutableArray alloc]init];
              arrayEventDescription = [[NSMutableArray alloc]init];
              arrayEventId = [[NSMutableArray alloc]init];
+             arrayEventCost = [[NSMutableArray alloc]init];
              
              for (int i=0; i<[jsonArray count]; i++) {
                  
@@ -147,6 +161,7 @@
                  NSString *seats = [dict valueForKey:@"totalSeats"];
                  NSString *description = [dict valueForKey:@"eventDescription"];
                  NSString *eventId = [dict valueForKey:@"Id"];
+                 NSString *eventCost = [dict valueForKey:@"cost"];
                  
                  [arrayEventPhotos addObject:image];
                  [arrayEventName addObject:name];
@@ -157,14 +172,17 @@
                  [arrayEventDate addObject:date];
                  [arrayEventSeats addObject:seats];
                  [arrayEventId addObject:eventId];
+                 [arrayEventCost addObject:eventCost];
                  
              }
              
              [self.tableView reloadData];
-             
+         //    tableView.tag =1;
+
          }
-         
+
      }];
+   // [activityIndicator hidesWhenStopped];
 
 }
 
@@ -235,6 +253,7 @@
     [self.view addSubview:ScrollViewHorizontal];
 
 
+
 }
 
 
@@ -299,16 +318,33 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             // WARNING: is the cell still using the same data by this point??
             cell.myImageView.image = [UIImage imageWithData: data];
+            //[activityIndicator stopAnimating];
+
         });
     });
 
     
     cell.primaryLabel.text =arrayEventName[row];
     cell.secondaryLabel.text = arrayEventAddress[row];
+    //cell.addressFrame.text = arrayEventDate[row];
+    //cell.secondaryLabel.textColor = [UIColor colorWithRed:0.51 green:0.58 blue:0.34 alpha:1.0];
+    cell.secondaryLabel.textColor = [UIColor orangeColor];
+   // cell.addressFrame.textColor = [UIColor orangeColor];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    
     
     return cell;
+    
+
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    
+   
+        [activityIndicator stopAnimating];
+        
     
 }
 
@@ -325,10 +361,18 @@
     mainDelegate.passEventSeats = [arrayEventSeats objectAtIndex:indexPath.row];
     mainDelegate.passEventImage = [arrayEventPhotos objectAtIndex:indexPath.row];
     mainDelegate.passEventId = [arrayEventId objectAtIndex:indexPath.row];
+    mainDelegate.passEventCost = [arrayEventCost objectAtIndex:indexPath.row];
     
-    EventsViewController *eventsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsViewController"];
-    
-    [self presentViewController:eventsViewController animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // WARNING: is the cell still using the same data by this point??
+       // cell.myImageView.image = [UIImage imageWithData: data];
+        //[activityIndicator stopAnimating];
+        EventsViewController *eventsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"eventsViewController"];
+        
+        [self presentViewController:eventsViewController animated:YES completion:nil];
+        
+    });
+
 }
 
 

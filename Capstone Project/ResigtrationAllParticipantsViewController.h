@@ -15,11 +15,10 @@
     IBOutlet UITableView *tableView;
     NSMutableArray *arrayParticipants;
     NSMutableArray *arrayParticipantAge;
-    
 
-}
-
+    AppDelegate *maindelegate;
+    NSString *username;
+   }
 @property(strong, nonatomic) IBOutlet UITableView *tableView;
-
-
+@property (strong, nonatomic) NSString *username;
 @end

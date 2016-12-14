@@ -10,6 +10,7 @@
 #import "SiteCell.h"
 #import "AppDelegate.h"
 #import "HomePageViewController.h"
+#import "ResigtrationAllParticipantsViewController.h"
 
 @interface RegistrationViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 {

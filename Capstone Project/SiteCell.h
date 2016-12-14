@@ -12,11 +12,13 @@
 {
     UILabel *primaryLabel;
     UILabel *secondaryLabel;
+    UILabel *addressFrame;
     UIImageView *myImageView;
 }
 
 @property (nonatomic, strong) UILabel *primaryLabel;
 @property (nonatomic, strong) UILabel *secondaryLabel;
+@property (nonatomic, strong) UILabel *addressFrame;
 @property (nonatomic, strong) UIImageView *myImageView;
 
 

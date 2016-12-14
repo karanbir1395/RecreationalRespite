@@ -13,13 +13,17 @@
 @end
 
 @implementation SignUpViewController
-@synthesize tfCity,tfPhoneNumber,tfEmail,tfFirstName,tfLastName,tfRegion, pickerRegion,tfUsername, arrayRegion, lblUsernameError, lblAsterisk;
+@synthesize tfCity,tfPhoneNumber,tfEmail,tfFirstName,tfLastName,tfRegion, pickerRegion,tfUsername, arrayRegion, lblUsernameError, lblAsterisk,scrollView,rememberContentOffset;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+    [scrollView setScrollEnabled:YES];
+
     self.pickerRegion = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    
+    mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
     
     [tfPhoneNumber setDelegate: self];
@@ -33,6 +37,7 @@
     
     lblUsernameError.hidden = true;
     lblAsterisk.hidden = true;
+    lblInvalidEmail.hidden = true;
     
     self.tfRegion.inputView = self.pickerRegion;
     
@@ -157,33 +162,72 @@
              if([responseString  isEqual: @"null"])
              {
                  lblUsernameError.hidden = true;
-                 [self InsertIntoUserInformation];
+                 
+                 BOOL email = [self NSStringIsValidEmail:tfEmail.text];
+                 
+                 if(email)
+                 {
+                    lblInvalidEmail.hidden = true;
+                     [self InsertIntoUserInformation];
+  
+                 }
+                 else if([tfEmail.text isEqualToString:@""])
+                 {
+                     lblInvalidEmail.text = @"Please enter Email";
+                     lblInvalidEmail.hidden = false;
+                 }
+                 
+                 else if(!email)
+                 {
+                     lblInvalidEmail.text = @"Invalid Email";
+                     lblInvalidEmail.hidden = false;
+
+                 }
+                 
+                 
              }
              else
              {
+                 if([tfUsername.text isEqualToString:@""] )
+                 {
+                     lblUsernameError.text = @"Please enter Username";
+                     
+                     lblUsernameError.hidden = false;
+                 }
+                 else
+                 {
+                 lblInvalidEmail.text = @"Please enter Email";
+                 lblUsernameError.text= @"Username Exists";
                  lblUsernameError.hidden = false;
+                 lblInvalidEmail.hidden = false;
+             }
              }
          }
          
      }];
 }
 
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
+    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
+}
 
 -(void) InsertIntoUserInformation
 {
     NSString *username = tfUsername.text;
     NSString *urlString = [NSString stringWithFormat:@"https://recrespite-3c13b.firebaseio.com/UserInformation/%@.json",username];
 
-    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    mainDelegate.usernameLoggedIn = username;
 
     
     NSURL *url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    // NSString *sendJSONData = [NSString stringWithFormat:@"firstname=%@&lastname=%@&username=%@&email=%@&phoneNumber=%@&city=%@&region=%@", tfFirstName.text, tfLastName.text, tfUsername.text, tfEmail.text, tfPhoneNumber.text, tfCity.text, tfRegion.text];
     
     NSDictionary *postJSON = [[NSMutableDictionary alloc]init];
     [postJSON setValue:self.tfUsername.text forKey:@"username"];
@@ -217,9 +261,9 @@
             //DISPATCH_ASYNC IS USED BECAUSE WE SHOULD ALWAYS UPDATE UI FROM MAIN THREAD
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 mainDelegate.passUsernametoNextScreen = username;
-                
+                mainDelegate.passUserEmail_Regis = tfEmail.text;
+                mainDelegate.passUserPhone_Regis = tfPhoneNumber.text;
                 ParticipantInformationViewController *participantViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"participantViewController"];
                 
                 [self presentViewController:participantViewController animated:YES completion:nil];
@@ -260,7 +304,6 @@
          {
              
              NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-             // NSLog(@"response is %@", responseString);
              
              if([responseString  isEqual: @"null"])
              {
@@ -290,6 +333,26 @@
     return YES;
 }
 
+//SCROLL VIEW METHODS
+- (void) viewDidAppear:(BOOL)animated {
+    [scrollView setContentSize:CGSizeMake(self.view.frame.size.width *1, self.view.frame.size.height*1)];
+    
+}
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:YES];
+    self.scrollView.contentOffset = CGPointMake(0, 0);
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.rememberContentOffset = self.scrollView.contentOffset;
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.scrollView.contentOffset = CGPointMake(0, self.rememberContentOffset.y);
+}
 
 
 - (void)didReceiveMemoryWarning {
